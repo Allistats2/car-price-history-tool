@@ -12,7 +12,7 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
     <!-- Black Dashboard CSS -->
-    <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="../assets/css/black-dashboard.min.css?v=1.0.0" rel="stylesheet" />
   </head>
   <body>
 <div class="wrapper ">
@@ -75,6 +75,67 @@
       
       <div class="container-fluid">
          <!-- your content here -->
+         <div class="card card-nav-tabs text-center">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Search for Car</h4>
+          </div>
+          <!-- 
+          <div class="card-body">
+            <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Year
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Make
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Model
+              </button>
+              <div class="dropdown-menu">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          -->
+          <form id = "modelForm">
+            <select id="yearSelect" ></select>
+            <br/>
+            <select id="makeSelect" ></select>
+            <br/>
+            <select id="modelSelect"></select>
+            <br/>
+            <br/>
+            <button id="searchButton" class="btn btn-primary animation-on-hover" type="button">Search</button>
+
+          </form>
+          <div class="card-footer text-muted">
+            Footer
+          </div>
+        </div>
          <div class="row">
           <div class="col-12">
             <div class="card card-chart">
@@ -161,6 +222,9 @@
 
 <!-- Chart -->
 <script src="../assets/js/line-chart.js"></script>
+
+<!-- DOM TS to JS -->
+<script src="/ts/dashboard.js"></script>
 
 <!--  Notifications Plugin    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
