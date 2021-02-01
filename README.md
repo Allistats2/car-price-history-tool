@@ -1,2 +1,7 @@
-# car-price-history-tool
-Tool to track trends in prices of specific automobiles 
+# Car Price History Tool
+
+## About
+A tool to visualize trends in average maeket values of specific auutomobiles. 
+
+## Usage 
+Visit: https://car-price-history-tool.netlify.app/
