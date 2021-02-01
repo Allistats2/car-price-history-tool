@@ -42,14 +42,20 @@ function renderMakeList(makeNames, makeIds) {
   function getModels(makeId, year) {
     
   
-      fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/'+ makeId + '/modelyear/' + year + '?format=json', {mode: 'cors'})  
+      fetch('makes.json')  
       .then(function(resp) { return resp.json() }) // Convert data to json
       .then(function(data) {
-      for (var i in data.Results) {
-        modelNames[i] = data.Results[i].Model_Name;
-        modelIds[i] = data.Results[i].Model_ID;
-      }
-      renderModelList(modelNames, modelIds);
+        for (let i in data.Results){
+          if (data.Results[i].MakeId == makeId ){
+            console.log(data.Results[i])
+            for (let j in data.Results[i].Models ){
+              modelNames[j] = data.Results[i].Models[j].Model_Name
+              modelIds[j] = data.Results[i].Models[j].Model_ID
+            }
+            break;
+          }
+        }
+        renderModelList(modelNames, modelIds)
       })
       .catch(function() {
           // catch any errors
@@ -111,9 +117,27 @@ function renderMakeList(makeNames, makeIds) {
     console.log("make " + makeSelect.value);
     console.log("model " + modelOptionList.value);
     console.log("year" + yearOptionList.value);
+    let url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    console.log(url);
+    fetch(url)
+    .then((response) => {
+        return response.json();
+    })
+    .then((priceHistory) => {
+        console.log(priceHistory)
+        console.log(priceHistory.prices[0])
+        console.log(priceHistory.prices[1])
+        let truncatedPrices = priceHistory.prices[1].map(x => Math.floor(x));
+        renderChart(priceHistory.prices[0], truncatedPrices)
+    })
+    .catch(err => console.log('Request Failed', err));
+
 
   });
 
   window.onload = function() {
+    let defaultTimes = ["Janary", "May", "September"];
+    let defaultPrices = [0, 0, 0];
+    renderChart(defaultTimes, defaultPrices);
     getMakes();
   }

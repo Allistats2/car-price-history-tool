@@ -32,12 +32,18 @@ function renderMakeList(makeNames, makeIds) {
     }
 }
 function getModels(makeId, year) {
-    fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/' + makeId + '/modelyear/' + year + '?format=json', { mode: 'cors' })
+    fetch('makes.json')
         .then(function (resp) { return resp.json(); }) // Convert data to json
         .then(function (data) {
-        for (var i in data.Results) {
-            modelNames[i] = data.Results[i].Model_Name;
-            modelIds[i] = data.Results[i].Model_ID;
+        for (var i_1 in data.Results) {
+            if (data.Results[i_1].MakeId == makeId) {
+                console.log(data.Results[i_1]);
+                for (var j in data.Results[i_1].Models) {
+                    modelNames[j] = data.Results[i_1].Models[j].Model_Name;
+                    modelIds[j] = data.Results[i_1].Models[j].Model_ID;
+                }
+                break;
+            }
         }
         renderModelList(modelNames, modelIds);
     })["catch"](function () {
@@ -82,7 +88,23 @@ searchButton.addEventListener('click', function (e) {
     console.log("make " + makeSelect.value);
     console.log("model " + modelOptionList.value);
     console.log("year" + yearOptionList.value);
+    var url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    console.log(url);
+    fetch(url)
+        .then(function (response) {
+        return response.json();
+    })
+        .then(function (priceHistory) {
+        console.log(priceHistory);
+        console.log(priceHistory.prices[0]);
+        console.log(priceHistory.prices[1]);
+        var truncatedPrices = priceHistory.prices[1].map(function (x) { return Math.floor(x); });
+        renderChart(priceHistory.prices[0], truncatedPrices);
+    })["catch"](function (err) { return console.log('Request Failed', err); });
 });
 window.onload = function () {
+    var defaultTimes = ["Janary", "May", "September"];
+    var defaultPrices = [0, 0, 0];
+    renderChart(defaultTimes, defaultPrices);
     getMakes();
 };
