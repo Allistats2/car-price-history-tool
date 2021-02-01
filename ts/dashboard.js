@@ -37,7 +37,6 @@ function getModels(makeId, year) {
         .then(function (data) {
         for (var i_1 in data.Results) {
             if (data.Results[i_1].MakeId == makeId) {
-                console.log(data.Results[i_1]);
                 for (var j in data.Results[i_1].Models) {
                     modelNames[j] = data.Results[i_1].Models[j].Model_Name;
                     modelIds[j] = data.Results[i_1].Models[j].Model_ID;
@@ -85,19 +84,12 @@ yearOptionList.addEventListener('change', function (e) {
 });
 var searchButton = document.getElementById("searchButton");
 searchButton.addEventListener('click', function (e) {
-    console.log("make " + makeSelect.value);
-    console.log("model " + modelOptionList.value);
-    console.log("year" + yearOptionList.value);
     var url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
-    console.log(url);
     fetch(url)
         .then(function (response) {
         return response.json();
     })
         .then(function (priceHistory) {
-        console.log(priceHistory);
-        console.log(priceHistory.prices[0]);
-        console.log(priceHistory.prices[1]);
         var truncatedPrices = priceHistory.prices[1].map(function (x) { return Math.floor(x); });
         renderChart(priceHistory.prices[0], truncatedPrices);
     })["catch"](function (err) { return console.log('Request Failed', err); });

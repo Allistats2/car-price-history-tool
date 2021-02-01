@@ -47,7 +47,6 @@ function renderMakeList(makeNames, makeIds) {
       .then(function(data) {
         for (let i in data.Results){
           if (data.Results[i].MakeId == makeId ){
-            console.log(data.Results[i])
             for (let j in data.Results[i].Models ){
               modelNames[j] = data.Results[i].Models[j].Model_Name
               modelIds[j] = data.Results[i].Models[j].Model_ID
@@ -114,19 +113,12 @@ function renderMakeList(makeNames, makeIds) {
 
   var searchButton = document.getElementById("searchButton") as HTMLButtonElement;
   searchButton.addEventListener('click', function (e) {
-    console.log("make " + makeSelect.value);
-    console.log("model " + modelOptionList.value);
-    console.log("year" + yearOptionList.value);
     let url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
-    console.log(url);
     fetch(url)
     .then((response) => {
         return response.json();
     })
     .then((priceHistory) => {
-        console.log(priceHistory)
-        console.log(priceHistory.prices[0])
-        console.log(priceHistory.prices[1])
         let truncatedPrices = priceHistory.prices[1].map(x => Math.floor(x));
         renderChart(priceHistory.prices[0], truncatedPrices)
     })
