@@ -91,12 +91,12 @@ searchButton.addEventListener('click', function (e) {
     })
         .then(function (priceHistory) {
         var truncatedPrices = priceHistory.prices[1].map(function (x) { return Math.floor(x); });
-        renderChart(priceHistory.prices[0], truncatedPrices);
+        renderChart(priceHistory.prices[0], truncatedPrices, true);
     })["catch"](function (err) { return console.log('Request Failed', err); });
 });
 window.onload = function () {
     var defaultTimes = ["Janary", "May", "September"];
     var defaultPrices = [0, 0, 0];
-    renderChart(defaultTimes, defaultPrices);
+    renderChart(defaultTimes, defaultPrices, false);
     getMakes();
 };

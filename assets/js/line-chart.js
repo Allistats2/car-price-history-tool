@@ -17,6 +17,7 @@ gradientChartOptionsConfiguration =  {
      position: "nearest"
    },
    responsive: true,
+   animation: false,
    scales:{
      yAxes: [{
        barPercentage: 1.6,
@@ -47,7 +48,14 @@ gradientChartOptionsConfiguration =  {
          }]
      }
 };
-function renderChart (times, prices){
+var myChart;
+function renderChart (times, prices, destroy){
+
+  if (destroy){
+    myChart.destroy();
+    console.log("destroy")
+  }
+
   var ctx = document.getElementById("lineChart").getContext("2d");
 
   var gradientStroke = ctx.createLinearGradient(0,230,0,50);
@@ -77,7 +85,7 @@ function renderChart (times, prices){
     }]
   };
 
-  var myChart = new Chart(ctx, {
+  myChart = new Chart(ctx, {
     type: 'line',
     data: data,
     options: gradientChartOptionsConfiguration

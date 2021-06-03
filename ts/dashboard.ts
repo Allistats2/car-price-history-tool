@@ -120,7 +120,7 @@ function renderMakeList(makeNames, makeIds) {
     })
     .then((priceHistory) => {
         let truncatedPrices = priceHistory.prices[1].map(x => Math.floor(x));
-        renderChart(priceHistory.prices[0], truncatedPrices)
+        renderChart(priceHistory.prices[0], truncatedPrices, true)
     })
     .catch(err => console.log('Request Failed', err));
 
@@ -130,6 +130,6 @@ function renderMakeList(makeNames, makeIds) {
   window.onload = function() {
     let defaultTimes = ["Janary", "May", "September"];
     let defaultPrices = [0, 0, 0];
-    renderChart(defaultTimes, defaultPrices);
+    renderChart(defaultTimes, defaultPrices, false);
     getMakes();
   }
