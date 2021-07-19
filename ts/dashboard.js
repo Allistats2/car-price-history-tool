@@ -2,12 +2,37 @@ var makeNames = [];
 var makeIds = [];
 var modelNames = [];
 var modelIds = [];
+var years = [];
+function getYears(selectdMake, selectedModel) {
+    var maxYear, minYear;
+    fetch('makes.json')
+        .then(function (resp) { return resp.json(); }) // Convert data to json
+        .then(function (data) {
+        for (var i in data.Results) {
+            for (var j in data.Results[i].Models) {
+                if (data.Results[i].Models[j].Make_ID == selectdMake && data.Results[i].Models[j].Model_ID == selectedModel) {
+                    maxYear = data.Results[i].Models[j].Max_Year;
+                    minYear = data.Results[i].Models[j].Min_Year;
+                }
+            }
+            for (var i_1 = minYear, j = 0; i_1 <= maxYear; i_1++, j++) {
+                years[j] = i_1;
+            }
+            renderYearList(years);
+        }
+    })["catch"](function () {
+        // catch any errors
+    });
+}
 var yearOptionList = document.getElementById("yearSelect");
-for (var i = 2020; i > 1964; i--) {
-    var yearOption = document.createElement("option");
-    yearOption.text = "" + i;
-    yearOption.value = "" + i;
-    yearOptionList.add(yearOption);
+function renderYearList(years) {
+    removeOptions(document.getElementById('yearSelect'));
+    for (var i in years) {
+        var yearOPtion = document.createElement("option");
+        yearOPtion.text = years[i];
+        yearOPtion.value = years[i];
+        yearOptionList.add(yearOPtion);
+    }
 }
 function getMakes() {
     fetch('makes.json')
@@ -31,15 +56,15 @@ function renderMakeList(makeNames, makeIds) {
         makeOptionList.add(makeOption);
     }
 }
-function getModels(makeId, year) {
+function getModels(makeId) {
     fetch('makes.json')
         .then(function (resp) { return resp.json(); }) // Convert data to json
         .then(function (data) {
-        for (var i_1 in data.Results) {
-            if (data.Results[i_1].MakeId == makeId) {
-                for (var j in data.Results[i_1].Models) {
-                    modelNames[j] = data.Results[i_1].Models[j].Model_Name;
-                    modelIds[j] = data.Results[i_1].Models[j].Model_ID;
+        for (var i in data.Results) {
+            if (data.Results[i].MakeId == makeId) {
+                for (var j in data.Results[i].Models) {
+                    modelNames[j] = data.Results[i].Models[j].Model_Name;
+                    modelIds[j] = data.Results[i].Models[j].Model_ID;
                 }
                 break;
             }
@@ -63,6 +88,10 @@ function clearModelList() {
     modelNames.splice(0, modelNames.length);
     modelIds.splice(0, modelIds.length);
 }
+function cleatYearList() {
+    removeOptions(document.getElementById('yearSelect'));
+    years.splice(0, years.length);
+}
 function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for (i = L; i >= 0; i--) {
@@ -72,15 +101,17 @@ function removeOptions(selectElement) {
 var makeSelect = document.getElementById("makeSelect");
 makeSelect.addEventListener('change', function (e) {
     clearModelList();
+    cleatYearList();
     var selectdMake = makeSelect.value;
-    var selectedYear = yearOptionList.value;
-    getModels(selectdMake, selectedYear);
+    getModels(selectdMake);
+    console.log(modelOptionList.value);
 });
-yearOptionList.addEventListener('change', function (e) {
-    clearModelList();
+var modelSelect = document.getElementById("modelSelect");
+modelSelect.addEventListener('change', function (e) {
+    cleatYearList();
     var selectdMake = makeSelect.value;
-    var selectedYear = yearOptionList.value;
-    getModels(selectdMake, selectedYear);
+    var selectedModel = modelOptionList.value;
+    getYears(selectdMake, selectedModel);
 });
 var searchButton = document.getElementById("searchButton");
 searchButton.addEventListener('click', function (e) {

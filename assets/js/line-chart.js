@@ -53,7 +53,6 @@ function renderChart (times, prices, destroy){
 
   if (destroy){
     myChart.destroy();
-    console.log("destroy")
   }
 
   var ctx = document.getElementById("lineChart").getContext("2d");

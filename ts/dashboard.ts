@@ -2,14 +2,43 @@ const makeNames = [];
 const makeIds = [];
 const modelNames = [];
 const modelIds = [];
+const years = [];
 
-var yearOptionList = document.getElementById("yearSelect") as HTMLSelectElement;
-for (var i = 2020; i > 1964; i--)
-{
-  var yearOption = document.createElement("option");
-  yearOption.text = "" + i;
-  yearOption.value = "" + i;
-  yearOptionList.add(yearOption); 
+function getYears(selectdMake, selectedModel){
+  let maxYear, minYear;
+  fetch('makes.json')  
+	.then(function(resp) { return resp.json() }) // Convert data to json
+	.then(function(data) {
+    for (let i in data.Results) {
+      for (let j in data.Results[i].Models ){
+
+        if ( data.Results[i].Models[j].Make_ID == selectdMake && data.Results[i].Models[j].Model_ID == selectedModel  ){
+          maxYear = data.Results[i].Models[j].Max_Year
+          minYear = data.Results[i].Models[j].Min_Year
+        }
+      }
+      for (let i = minYear, j = 0; i <= maxYear; i++, j++){
+        years[j] = i 
+      }
+      renderYearList(years)
+      
+    }
+	})
+	.catch(function() {
+		// catch any errors
+	});
+
+
+}
+let yearOptionList = document.getElementById("yearSelect") as HTMLSelectElement;
+function renderYearList(years){
+  removeOptions(document.getElementById('yearSelect'))
+  for (var i in years){
+    var yearOPtion = document.createElement("option");
+    yearOPtion.text = years[i];
+    yearOPtion.value = years[i];
+    yearOptionList.add(yearOPtion);
+  }
 }
 
 function getMakes() {
@@ -39,7 +68,7 @@ function renderMakeList(makeNames, makeIds) {
   }
 
   
-  function getModels(makeId, year) {
+  function getModels(makeId) {
     
   
       fetch('makes.json')  
@@ -82,6 +111,10 @@ function renderMakeList(makeNames, makeIds) {
    modelIds.splice(0, modelIds.length);
 
   }
+  function cleatYearList(){
+    removeOptions(document.getElementById('yearSelect'))
+    years.splice(0, years.length);
+  }
 
   function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
@@ -92,24 +125,24 @@ function renderMakeList(makeNames, makeIds) {
 
   var makeSelect = document.getElementById("makeSelect") as HTMLSelectElement;
   makeSelect.addEventListener('change', function (e) {
-
     clearModelList();
+    cleatYearList();
+    var selectdMake = makeSelect.value;
+    getModels( selectdMake );
+    console.log(modelOptionList.value)
+
+   
+  });
+
+  var modelSelect = document.getElementById("modelSelect") as HTMLSelectElement;
+  modelSelect.addEventListener('change', function (e) {
+    cleatYearList();
 
     var selectdMake = makeSelect.value;
-    var selectedYear = yearOptionList.value;
-    getModels( selectdMake, selectedYear );
-    
-    });
+    var selectedModel = modelOptionList.value;
+    getYears(selectdMake, selectedModel);
 
-    yearOptionList.addEventListener('change', function (e) {
-
-      clearModelList();
-  
-      var selectdMake = makeSelect.value;
-      var selectedYear = yearOptionList.value;
-      getModels( selectdMake, selectedYear );
-      
-      });
+  });
 
   var searchButton = document.getElementById("searchButton") as HTMLButtonElement;
   searchButton.addEventListener('click', function (e) {
