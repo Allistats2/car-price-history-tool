@@ -33,6 +33,13 @@ function getYears(selectdMake, selectedModel){
 let yearOptionList = document.getElementById("yearSelect") as HTMLSelectElement;
 function renderYearList(years){
   removeOptions(document.getElementById('yearSelect'))
+  var firstOption = document.createElement("option");
+  firstOption.value = ""
+  firstOption.text = "Select Year"
+  firstOption.selected 
+  firstOption.disabled
+  firstOption.hidden
+  yearOptionList.add(firstOption)
   for (var i in years){
     var yearOPtion = document.createElement("option");
     yearOPtion.text = years[i];
@@ -58,6 +65,13 @@ function getMakes() {
 }
 function renderMakeList(makeNames, makeIds) {
     var makeOptionList = document.getElementById("makeSelect") as HTMLSelectElement;
+    var firstOption = document.createElement("option");
+    firstOption.value = ""
+    firstOption.text = "Select Make"
+    firstOption.selected 
+    firstOption.disabled
+    firstOption.hidden
+    makeOptionList.add(firstOption)
     for (var i in makeNames) {
       var makeOption = document.createElement("option");
       makeOption.text = makeNames[i];
@@ -91,10 +105,13 @@ function renderMakeList(makeNames, makeIds) {
   }
   var modelOptionList = document.getElementById("modelSelect") as HTMLSelectElement;
   function renderModelList(modelNames, modelIds) {
-    
-  
-    
-    
+    var firstOption = document.createElement("option");
+    firstOption.value = ""
+    firstOption.text = "Select Model"
+    firstOption.selected 
+    firstOption.disabled
+    firstOption.hidden
+    modelOptionList.add(firstOption)
     for (var i in modelNames) {
       var modelOtion = document.createElement("option");
       modelOtion.text = modelNames[i];
