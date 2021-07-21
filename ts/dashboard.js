@@ -135,7 +135,9 @@ modelSelect.addEventListener('change', function (e) {
     getYears(selectdMake, selectedModel);
 });
 var searchButton = document.getElementById("searchButton");
+var spinner = document.getElementById("spinner");
 searchButton.addEventListener('click', function (e) {
+    spinner.removeAttribute('hidden');
     var url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
         .then(function (response) {
@@ -144,6 +146,7 @@ searchButton.addEventListener('click', function (e) {
         .then(function (priceHistory) {
         var truncatedPrices = priceHistory.prices[1].map(function (x) { return Math.floor(x); });
         renderChart(priceHistory.prices[0], truncatedPrices, true);
+        spinner.setAttribute('hidden', '');
     })["catch"](function (err) { return console.log('Request Failed', err); });
 });
 window.onload = function () {

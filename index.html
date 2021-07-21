@@ -13,6 +13,9 @@
 
     <!-- Black Dashboard CSS -->
     <link href="../assets/css/black-dashboard.min.css?v=1.0.0" rel="stylesheet" />
+
+    <!-- Spinner CSS-->
+    <link href="/assets/css/loader.css" rel="stylesheet" />
   </head>
   <body>
 <div class="wrapper ">
@@ -92,11 +95,15 @@
             <br/>
             <br/>
             <button id="searchButton" class="btn btn-primary animation-on-hover" type="button">Search</button>
-
+            
           </form>
+          
           <div class="card-footer text-muted">
-            Footer
+            
+            <div hidden id="spinner"></div>
           </div>
+          
+          
         </div>
          <div class="row">
           <div class="col-12">

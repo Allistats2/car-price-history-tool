@@ -162,7 +162,9 @@ function renderMakeList(makeNames, makeIds) {
   });
 
   var searchButton = document.getElementById("searchButton") as HTMLButtonElement;
+  const spinner = document.getElementById("spinner")
   searchButton.addEventListener('click', function (e) {
+    spinner.removeAttribute('hidden');
     let url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
     .then((response) => {
@@ -171,6 +173,7 @@ function renderMakeList(makeNames, makeIds) {
     .then((priceHistory) => {
         let truncatedPrices = priceHistory.prices[1].map(x => Math.floor(x));
         renderChart(priceHistory.prices[0], truncatedPrices, true)
+        spinner.setAttribute('hidden', '');
     })
     .catch(err => console.log('Request Failed', err));
 
