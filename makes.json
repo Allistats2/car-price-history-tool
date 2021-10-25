@@ -2,14 +2,27 @@
     "Count":4,
     "Message":"Response returned successfully",
     "Results": [
-        {"MakeId":475,"MakeName":"Acura","VehicleTypeId":2,"VehicleTypeName":"Passenger Car", "Models": [
+        {"MakeId":475,"MakeName":"Acura", "Models": [
             {"Make_ID":475,"Make_Name":"ACURA","Model_ID":5168,"Model_Name":"NSX", "Min_Year":1991, "Max_Year":2005}
         ] },
-        {"MakeId":452,"MakeName":"BMW","VehicleTypeId":2,"VehicleTypeName":"Passenger Car", "Models": [
+        {"MakeId":452,"MakeName":"BMW", "Models": [
             {"Make_ID":452,"Make_Name":"BMW","Model_ID":1710,"Model_Name":"M3", "Min_Year":1995, "Max_Year":2009},
-            {"Make_ID":452,"Make_Name":"BMW","Model_ID":2024,"Model_Name":"M5", "Min_Year":1995, "Max_Year":2009}
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":2024,"Model_Name":"M5", "Min_Year":1995, "Max_Year":2009},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":5198,"Model_Name":"840Ci", "Min_Year":1992, "Max_Year":1996},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":5199,"Model_Name":"850Ci", "Min_Year":1990, "Max_Year":1999},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":5200,"Model_Name":"850CSi", "Min_Year":1992, "Max_Year":1996},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":5199,"Model_Name":"850i", "Min_Year":1990, "Max_Year":1994},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":"5239m","Model_Name":"Z3M", "Min_Year":1997, "Max_Year":2002},
+            {"Make_ID":452,"Make_Name":"BMW","Model_ID":"1725m","Model_Name":"Z4M", "Min_Year":2006, "Max_Year":2008}
+            
         ]},
-        {"MakeId":474,"MakeName":"Honda","VehicleTypeId":2,"VehicleTypeName":"Passenger Car", "Models" : [
+        {"MakeId":467,"MakeName":"CHEVROLET", "Models": [
+            {"Make_ID":467,"Make_Name":"CHEVROLET","Model_ID":1831,"Model_Name":"Corvette", "Min_Year":1997, "Max_Year":2013}
+        ] },
+        {"MakeId":460,"MakeName":"Ford", "Models": [
+            {"Make_ID":460,"Make_Name":"Ford","Model_ID":"1801raptor","Model_Name":"F-150 Raptor", "Min_Year":2010, "Max_Year":2014}
+        ] },
+        {"MakeId":474,"MakeName":"Honda", "Models" : [
             {"Make_ID":474,"Make_Name":"HONDA","Model_ID":3234,"Model_Name":"S2000", "Min_Year":2001, "Max_Year":2009}
 
         ]},
@@ -18,8 +31,14 @@
             {"Make_ID":951,"Make_Name":"HUMMER","Model_ID":4598,"Model_Name":"H2", "Min_Year":2003, "Max_Year":2009},
             {"Make_ID":951,"Make_Name":"HUMMER","Model_ID":4599,"Model_Name":"H3", "Min_Year":2006, "Max_Year":2010}
         ]},
-        {"MakeId":502,"MakeName":"LAMBORGHINI","VehicleTypeId":2,"VehicleTypeName":"Passenger Car", "Models":[
+        {"MakeId":502,"MakeName":"LAMBORGHINI", "Models":[
             {"Make_ID":502,"Make_Name":"LAMBORGHINI","Model_ID":8619,"Model_Name":"Diablo", "Min_Year":1990, "Max_Year":2001 }
+        ]},
+        {"MakeId":449,"MakeName":"MERCEDES-BENZ", "Models" : [
+            {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208536amg","Model_Name":"C 36 AMG", "Min_Year":1995, "Max_Year":1997},
+            {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208543amg","Model_Name":"C 43 AMG", "Min_Year":1998, "Max_Year":2004},
+            {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208555amg","Model_Name":"C 55 AMG", "Min_Year":2005, "Max_Year":2006},
+            {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208155amg","Model_Name":"E 55 AMG", "Min_Year":1998, "Max_Year":2005}
         ]}
     ]
 
