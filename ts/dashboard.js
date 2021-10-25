@@ -138,7 +138,7 @@ var searchButton = document.getElementById("searchButton");
 var spinner = document.getElementById("spinner");
 searchButton.addEventListener('click', function (e) {
     spinner.removeAttribute('hidden');
-    var url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    var url = 'https://otjlzxgibb.execute-api.us-east-1.amazonaws.com/prod/test-resource?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
         .then(function (response) {
         return response.json();

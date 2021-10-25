@@ -165,7 +165,7 @@ function renderMakeList(makeNames, makeIds) {
   const spinner = document.getElementById("spinner")
   searchButton.addEventListener('click', function (e) {
     spinner.removeAttribute('hidden');
-    let url = 'https://xa5gbbywad.execute-api.us-east-1.amazonaws.com/dev/getvehicle?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    let url = 'https://otjlzxgibb.execute-api.us-east-1.amazonaws.com/prod/test-resource?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
     .then((response) => {
         return response.json();
