@@ -138,14 +138,14 @@ var searchButton = document.getElementById("searchButton");
 var spinner = document.getElementById("spinner");
 searchButton.addEventListener('click', function (e) {
     spinner.removeAttribute('hidden');
-    var url = 'https://otjlzxgibb.execute-api.us-east-1.amazonaws.com/prod/test-resource?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    var url = 'https://yorhqfshve.execute-api.us-west-1.amazonaws.com/prod/?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
         .then(function (response) {
         return response.json();
     })
         .then(function (priceHistory) {
-        var truncatedPrices = priceHistory.prices[1].map(function (x) { return Math.floor(x); });
-        renderChart(priceHistory.prices[0], truncatedPrices, true);
+        var truncatedPrices = priceHistory.pricehistory.prices[1].map(function (x) { return Math.floor(x); });
+        renderChart(priceHistory.pricehistory.prices[0], truncatedPrices, true);
         spinner.setAttribute('hidden', '');
     })["catch"](function (err) { return console.log('Request Failed', err); });
 });

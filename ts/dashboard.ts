@@ -165,14 +165,14 @@ function renderMakeList(makeNames, makeIds) {
   const spinner = document.getElementById("spinner")
   searchButton.addEventListener('click', function (e) {
     spinner.removeAttribute('hidden');
-    let url = 'https://otjlzxgibb.execute-api.us-east-1.amazonaws.com/prod/test-resource?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
+    let url = 'https://yorhqfshve.execute-api.us-west-1.amazonaws.com/prod/?id=' + yearOptionList.value + makeSelect.value + modelOptionList.value;
     fetch(url)
     .then((response) => {
         return response.json();
     })
     .then((priceHistory) => {
-        let truncatedPrices = priceHistory.prices[1].map(x => Math.floor(x));
-        renderChart(priceHistory.prices[0], truncatedPrices, true)
+        let truncatedPrices = priceHistory.pricehistory.prices[1].map(x => Math.floor(x));
+        renderChart(priceHistory.pricehistory.prices[0], truncatedPrices, true)
         spinner.setAttribute('hidden', '');
     })
     .catch(err => console.log('Request Failed', err));
