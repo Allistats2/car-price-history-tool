@@ -39,7 +39,15 @@
             {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208543amg","Model_Name":"C 43 AMG", "Min_Year":1998, "Max_Year":2004},
             {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208555amg","Model_Name":"C 55 AMG", "Min_Year":2005, "Max_Year":2006},
             {"Make_ID":449,"Make_Name":"MERCEDES-BENZ","Model_ID":"208155amg","Model_Name":"E 55 AMG", "Min_Year":1998, "Max_Year":2005}
+        ]},
+        {"MakeId":441,"MakeName":"TESLA", "Models" : [
+            {"Make_ID":441,"Make_Name":"TESLA","Model_ID":1685,"Model_Name":"Model S", "Min_Year":2012, "Max_Year":2021},
+            {"Make_ID":441,"Make_Name":"TESLA","Model_ID":10199,"Model_Name":"Model X", "Min_Year":2015, "Max_Year":2021},
+            {"Make_ID":441,"Make_Name":"TESLA","Model_ID":2071,"Model_Name":"Roadster", "Min_Year":2008, "Max_Year":2012},
+            {"Make_ID":441,"Make_Name":"TESLA","Model_ID":27027,"Model_Name":"Model Y", "Min_Year":2020, "Max_Year":2021},
+            {"Make_ID":441,"Make_Name":"TESLA","Model_ID":17834,"Model_Name":"Model 3", "Min_Year":2017, "Max_Year":2021}
         ]}
+
     ]
 
 }
